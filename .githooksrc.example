@@ -1,10 +1,9 @@
 [commits]
 
-; Check if the current commit matches this regexp
+; Check if the current commit matches the regexp
 ; {{BRANCH}} - replaced with current branch
-;regexp="^{{BRANCH}}:.*$"
 regexp="^(MDR-[0-9]{3,10}):.*$"
 
-; This option check also that we commit on the right branch
-; {{MATCH}} - extract one match from regexp
+; Check that we commit on the right branch
+; {{MATCH}} - extract first match from regexp
 branch="^{{MATCH}}[^0-9]"

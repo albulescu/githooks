@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-
 if [ $HOOK != "commit-msg" ]; then exit 0; fi
 
 REG=${INI__commits__regexp/\{\{BRANCH\}\}/$BRANCH}
