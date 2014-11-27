@@ -1,3 +1,7 @@
 #!/usr/bin/env bash
 
-echo "works!"
+HOOK=`basename $0`
+
+echo $HOOK
+
+exit 1
