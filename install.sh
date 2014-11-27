@@ -6,7 +6,7 @@ set -o errexit
 
 GITHOOKS_PATH="$HOME/githooks"
 GITHOOKS_HOOK="$GITHOOKS_PATH/hook.sh"
-REPO="git@github.com:albulescu/githooks.git"
+REPO="https://github.com/albulescu/githooks.git"
 CURRENT_PATH=`pwd`
 
 log()  { printf "%b\n" "$*"; }
