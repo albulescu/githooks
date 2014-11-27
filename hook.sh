@@ -11,7 +11,7 @@ if [ -f $RCFILE ]; then
     
     read_ini $RCFILE
 
-    for f in "$HOOKS_PATH/filtes/*"; do
+    for f in "$HOOKS_PATH/filters/*"; do
        . $f
     done
 fi
