@@ -13,3 +13,17 @@ Execute following command in your working directory:
 Go to your project folder where you executed the install and rename file **.githooksrc.example** to **.githooksrc** 
 
 Complete!
+
+## Cnofigure
+
+```INI
+[commits]
+
+; Check if the current commit matches the regexp
+; {{BRANCH}} - replaced with current branch
+regexp="^(MDR-[0-9]{3,10}):.*$"
+
+; Check that we commit on the right branch
+; {{MATCH}} - extract first match from regexp
+branch="^{{MATCH}}[^0-9]"
+```
