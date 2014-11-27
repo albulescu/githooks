@@ -101,11 +101,25 @@ update()
     fi
 }
 
+copy_rc()
+{
+    if [ [ ! -f "$CURRENT_PATH/.githooksrc.example"] OR [ ! -f "$CURRENT_PATH/.githooksrc"] ]; then
+        
+        echo -n "Copy .githooksrc.example to working directory..."
+
+        cp "$GITHOOKS_PATH/.githooksrc.example" "$CURRENT_PATH"
+
+        echo $(color_green "[OK]")
+    fi
+}
+
 install()
 {
 	update 
 
     setup_hooks
+
+    copy_rc
 
     echo $(color_green "Done, happy coding!")
 }
