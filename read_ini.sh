@@ -209,6 +209,7 @@ function read_ini()
 		then
 			echo "Error: Invalid line:" >&2
 			echo " ${LINE_NUM}: $line" >&2
+			INI_PARSE_ERROR="error at line: ${LINE_NUM}: $line"
 			cleanup_bash
 			return 1
 		fi
