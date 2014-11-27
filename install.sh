@@ -103,14 +103,21 @@ update()
 
 copy_rc()
 {
-    if [ [ ! -f "$CURRENT_PATH/.githooksrc.example"] OR [ ! -f "$CURRENT_PATH/.githooksrc"] ]; then
-        
-        echo -n "Copy .githooksrc.example to working directory..."
+    echo -n "Copy .githooksrc.example to working directory..."
 
-        cp "$GITHOOKS_PATH/.githooksrc.example" "$CURRENT_PATH"
-
-        echo $(color_green "[OK]")
+    if [ -f "$CURRENT_PATH/.githooksrc" ]; then
+        echo $(color_dark_gray "[.githooksrc found]")
+        return 0;
     fi
+
+    if [ -f "$CURRENT_PATH/.githooksrc.example" ]; then
+        echo $(color_magenta "[.githooksrc.example present, please rename it!]")
+        return 0;
+    fi
+
+    cp "$GITHOOKS_PATH/.githooksrc.example" $CURRENT_PATH 
+
+    echo $(color_green "[OK]")
 }
 
 install()
