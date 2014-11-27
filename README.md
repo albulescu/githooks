@@ -11,10 +11,13 @@ Execute following command in your working directory:
 
 ## Setup
 Go to your project folder where you executed the install and rename file **.githooksrc.example** to **.githooksrc** 
-
 Complete!
 
-## Cnofigure
+## Available filters
+- Commits
+- UnitTest Runner ( todo )
+
+## Configure
 
 ```INI
 [commits]
