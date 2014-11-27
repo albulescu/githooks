@@ -1,7 +1,8 @@
 # Install GitHooks
 
+Execute following command in your working directory:
 ```sh
-cd {project} && \curl -sSL https://raw.githubusercontent.com/albulescu/githooks/master/install.sh | bash
+\curl -sSL https://raw.githubusercontent.com/albulescu/githooks/master/install.sh | bash
 ```
 
 # Setup
