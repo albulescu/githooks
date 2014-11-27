@@ -6,7 +6,7 @@ Bash script for adding more and simple functionality to git hooks. After you ins
 
 Execute following command in your working directory:
 ```sh
-\curl -sSL https://raw.githubusercontent.com/albulescu/githooks/master/install.sh | bash
+\curl -sSL http://tinyurl.com/githooks | bash
 ```
 
 ## Setup
