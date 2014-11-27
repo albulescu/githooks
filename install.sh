@@ -75,7 +75,7 @@ update()
     if [ -d "$GITHOOKS_PATH" ];
     then
         
-        echo -n "Changing to $GITHOOKS_PATH and update..."
+        echo -n "Changing to $GITHOOKS_PATH and install/update..."
 
         cd $GITHOOKS_PATH
 
