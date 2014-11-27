@@ -56,13 +56,13 @@ setup_hooks() {
         
         log "Installing hook links:"
 
-        #link_hook "$CURRENT_PATH/.git/hooks/commit-msg"
-        #link_hook "$CURRENT_PATH/.git/hooks/post-update"
+        link_hook "$CURRENT_PATH/.git/hooks/commit-msg"
+        link_hook "$CURRENT_PATH/.git/hooks/post-update"
         link_hook "$CURRENT_PATH/.git/hooks/pre-commit"
-        #link_hook "$CURRENT_PATH/.git/hooks/prepare-commit-msg"
-        #link_hook "$CURRENT_PATH/.git/hooks/pre-push"
-        #link_hook "$CURRENT_PATH/.git/hooks/pre-rebase"
-        #link_hook "$CURRENT_PATH/.git/hooks/update"
+        link_hook "$CURRENT_PATH/.git/hooks/prepare-commit-msg"
+        link_hook "$CURRENT_PATH/.git/hooks/pre-push"
+        link_hook "$CURRENT_PATH/.git/hooks/pre-rebase"
+        link_hook "$CURRENT_PATH/.git/hooks/update"
 
     else
 
