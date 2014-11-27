@@ -77,7 +77,13 @@ update()
         
         echo -n "Changing to $GITHOOKS_PATH and update..."
 
-        cd $GITHOOKS_PATH && git pull origin master >& /dev/null
+        cd $GITHOOKS_PATH
+
+        git reset --hard >& /dev/null
+
+        git clean -f >& /dev/null
+
+        git pull origin master >& /dev/null
 
         echo $(color_green "[OK]")
 
