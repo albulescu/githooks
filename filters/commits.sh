@@ -11,8 +11,8 @@ if [ -n "${REG}" ]; then
 fi
 
 if [ -n "${INI__commits__branch}" ] && [ ${#BASH_REMATCH[@]} -eq "1" ]; then
-	notify-send -u critical -t 7000 "Git Hooks" "Option to match branch used but no match from commit regexp"
-	exit 0
+    notify-send -u critical -t 7000 "Git Hooks" "Option to match branch used but no match from commit regexp"
+    exit 0
 fi
 
 BRANCH_MATCH=${INI__commits__branch/\{\{MATCH\}\}/${BASH_REMATCH[1]}} 
