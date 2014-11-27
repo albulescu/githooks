@@ -1,6 +1,6 @@
 #GitHooks
 
-Bash script for adding more and simple functionality to git hooks. After you install it a file named .githooksrc will be copyed in your project and there you can define rules.
+Bash script for adding more and simple functionality to git hooks. After you install it, a file named **.githooksrc** will be copyed in your project and there you can define your rules.
 
 ## Install
 
