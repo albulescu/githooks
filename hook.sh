@@ -1,7 +1,17 @@
 #!/usr/bin/env bash
 
+HOOKS_PATH=$(dirname $(readlink -f $0))
 HOOK=`basename $0`
+WORKING_DIR=$(git rev-parse --show-toplevel);
+RCFILE="$WORKING_DIR/.githooksrc"
 
-echo $HOOK
+source "$HOOKS_PATH/read_ini.sh"
 
-exit 1
+if [ -f $RCFILE ]; then
+    
+    read_ini $RCFILE
+
+    for f in "$HOOKS_PATH/filtes/*"; do
+       . $f
+    done
+fi
