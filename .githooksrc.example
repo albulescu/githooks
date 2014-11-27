@@ -1,0 +1,4 @@
+[commits]
+; {{BRANCH}} - replaced with current branch
+;regexp="^{{BRANCH}}:.*$"
+;regexp="^MDR-[0-9]{3,10}:.*$"
