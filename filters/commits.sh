@@ -20,23 +20,25 @@ then
             [[ $BRANCH =~ $PREPEND_BRANCH_MATCH ]]
 
             if [ "${#BASH_REMATCH[@]}" -eq "2" ]; then
+                
                 PREPEND=${BASH_REMATCH[1]}
+
+                if [ -n $PREPEND_BRANCH_MATCH_SUFFIX ]; then
+                    PREPEND="$PREPEND$PREPEND_BRANCH_MATCH_SUFFIX"
+                fi
+            
+                if [ -n $PREPEND_BRANCH_MATCH_PREFIX ]; then
+                    PREPEND="$PREPEND_BRANCH_MATCH_PREFIX$PREPEND"
+                fi
+
+                COMMIT=$(cat $1)
+
+                echo -n "$PREPEND$COMMIT" > "$1"
+
             else
                 notify-send -u critical -t 7000 "Git Hooks" "prepend_branch_match has no match to return"
             fi
         fi
-
-        if [ -n $PREPEND_BRANCH_MATCH_SUFFIX ]; then
-            PREPEND="$PREPEND$PREPEND_BRANCH_MATCH_SUFFIX"
-        fi
-    
-        if [ -n $PREPEND_BRANCH_MATCH_PREFIX ]; then
-            PREPEND="$PREPEND_BRANCH_MATCH_PREFIX$PREPEND"
-        fi
-
-        COMMIT=$(cat $1)
-
-        echo -n "$PREPEND$COMMIT" > "$1"
     fi
 
     # read commit message

@@ -5,6 +5,9 @@ debug=no
 
 [commits]
 
+; Prepend branch matched from prepend_branch_match
+prepend_branch_name=yes
+
 ; Append branch name as commit suffix
 ; {{BRANCH}} - replaced with current branch
 prepend_branch_match="^(MDR-[0-9]{3,10}).*$"
@@ -16,9 +19,6 @@ prepend_branch_match="^(MDR-[0-9]{3,10}).*$"
 ; This will add after the match. If match is MDR-123
 ; the commit message will be MDR-123 + prepend_branch_match_prefix
 prepend_branch_match_suffix=": "
-
-; Prepend branch matched from prepend_branch_match
-prepend_branch_name=yes
 
 ; Check if the current commit matches the regexp
 ; {{BRANCH}} - replaced with current branch
@@ -32,19 +32,19 @@ branch="^{{MATCH}}[^0-9]*"
 [php]
 
 ; Check php file sintax
-check_sintax=yes
+; check_sintax=yes
 
 ; Folders to exclude
-check_sintax_exclude=vendor
+; check_sintax_exclude=vendor
 
 ; Run unittests on 'commit' or 'push'
-unittest="push"
+; unittest="push"
 
 ; {{WORKING_DIR}} - replaced with current dir
-unittest_command="cd {{WORKING_DIR}} && php unit"
+; unittest_command="cd {{WORKING_DIR}} && php unit"
 
 ; Notify the coverage process
-unittest_notify_coverage=yes
+; unittest_notify_coverage=yes
 
 ; If coverage is lower than. exit with code 1
 ; unittest_accept_min_coverage=70
