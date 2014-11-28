@@ -12,8 +12,11 @@ HOOK=`basename $0`
 # working directory where hooks installed
 WORKING_DIR=$(git rev-parse --show-toplevel);
 
-# configuration file from working directory
-RCFILE="$WORKING_DIR/.githooksrc"
+if [ -f "$WORKING_DIR/.githooksrc.extra" ]; then
+    RCFILE="$WORKING_DIR/.githooksrc.extra"
+else
+    RCFILE="$WORKING_DIR/.githooksrc"
+fi
 
 # current branch in working directory
 BRANCH=$(git rev-parse --abbrev-ref HEAD)
