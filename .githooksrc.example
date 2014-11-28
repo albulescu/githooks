@@ -1,4 +1,24 @@
+[general]
+
+; Show all commands executed by using set -x
+debug=no
+
 [commits]
+
+; Append branch name as commit suffix
+; {{BRANCH}} - replaced with current branch
+prepend_branch_match="^(MDR-[0-9]{3,10}).*$"
+
+; This will add bofore the match. If match is MDR-123
+; the commit message will be prepend_branch_match_prefix + MDR-123
+; prepend_branch_match_prefix="-"
+
+; This will add after the match. If match is MDR-123
+; the commit message will be MDR-123 + prepend_branch_match_prefix
+prepend_branch_match_suffix=": "
+
+; Prepend branch matched from prepend_branch_match
+prepend_branch_name=yes
 
 ; Check if the current commit matches the regexp
 ; {{BRANCH}} - replaced with current branch
@@ -6,4 +26,32 @@ regexp="^(MDR-[0-9]{3,10}):.*$"
 
 ; Check that we commit on the right branch
 ; {{MATCH}} - extract first match from regexp
-branch="^{{MATCH}}[^0-9]"
+branch="^{{MATCH}}[^0-9]*"
+
+
+[php]
+
+; Check php file sintax
+check_sintax=yes
+
+; Folders to exclude
+check_sintax_exclude=vendor
+
+; Run unittests on 'commit' or 'push'
+unittest="push"
+
+; {{WORKING_DIR}} - replaced with current dir
+unittest_command="cd {{WORKING_DIR}} && php unit"
+
+; Notify the coverage process
+unittest_notify_coverage=yes
+
+; If coverage is lower than. exit with code 1
+; unittest_accept_min_coverage=70
+
+
+[ruby]
+
+; Remove pry debugging
+; remove_pry=yes
+; remove_pry_exclude="lib,.git,cache,app/cache"

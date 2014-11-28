@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 # enable smart regexp
 shopt -s extglob
@@ -18,6 +18,8 @@ RCFILE="$WORKING_DIR/.githooksrc"
 # current branch in working directory
 BRANCH=$(git rev-parse --abbrev-ref HEAD)
 
+export RUNNING_UNDER_GIT_HOOK=1
+
 # function to deny current action
 deny()
 {
@@ -33,6 +35,10 @@ if [ -f $RCFILE ]; then
     # read ini file from working directory
     read_ini $RCFILE 2> /dev/null
 
+    if [ "$INI__general__debug" == "1" ]; then
+        set -x
+    fi
+
     # check if read init fail parsing .githooksrc show notification and exit
     if [ -n "$INI_PARSE_ERROR" ]; then 
         notify-send -u critical -c "githooks" "Git Hooks" ".githooksrc $INI_PARSE_ERROR"
@@ -46,8 +52,8 @@ if [ -f $RCFILE ]; then
         fi
 
         # load all filters
-        for f in "$HOOKS_PATH/filters/*"; do
-            . $f
+        for filter in $(ls -v "$HOOKS_PATH/filters/"); do
+            . "$HOOKS_PATH/filters/$filter"
         done
     fi
 else
