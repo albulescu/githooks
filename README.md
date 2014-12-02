@@ -1,6 +1,6 @@
 #GitHooks
 
-Bash script for adding more and simple functionality to git hooks. After you install it, a file named **.githooksrc** will be copied in your project and there you can define your rules.
+Bash script for adding more and simple functionality to git hooks. After you install it, a file named **.githooksrc** will be copied in your project and there you can define your rules. This tool work well with [jira](https://www.atlassian.com/software/jira) where you define branch names like ***PRJ-123-feature-name***.
 
 **The install script will clone this project into ~/githooks directory and link hooks from working directory to ~/githooks/hook.sh. The original hooks if any will be in the same directory with suffix .backup**
 
@@ -18,7 +18,7 @@ Complete!
 
 ## Available filters
 - Commits
-- UnitTest Runner ( todo )
+- php & ruby
 
 ## Configure
 
