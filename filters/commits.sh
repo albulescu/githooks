@@ -1,4 +1,4 @@
-#!/bin/bash
+    #!/bin/bash
 
 if [ $HOOK == "commit-msg" ];
 then
@@ -36,9 +36,9 @@ then
 
                 INITIAL_COMMIT=$(cat $1)
 
+                if [ -n "$PREPEND_BRANCH_DENY" ]; then
 
-                if [ -n $PREPEND_BRANCH_DENY ]; then
-                    if [ $INITIAL_COMMIT =~ $PREPEND_BRANCH_DENY ]; then
+                    if [[ $INITIAL_COMMIT =~ $PREPEND_BRANCH_DENY ]]; then
                         deny "COMMITS" "prepend_branch_name is activated and prepend_branch_deny matching your commit."
                         exit 1
                     fi
