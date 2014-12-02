@@ -37,7 +37,6 @@ prepend_branch_name=yes
 ; {{BRANCH}} - replaced with current branch
 prepend_branch_match="^(MDR-[0-9]{3,10}).*$"
 
-
 ; If matches this regexp only if prepend_branch_name is on will exit with code 1
 ; This is to avoid adding new id to the commit.
 ; For example if you add 'MDR-21 message' on branch MDR-123
@@ -70,13 +69,10 @@ branch="^{{MATCH}}[^0-9]*"
 ; check_sintax_exclude=vendor
 
 ; Run unittests on 'commit' or 'push'
-; unittest="push"
-
-; {{WORKING_DIR}} - replaced with current dir
-; unittest_command="cd {{WORKING_DIR}} && php unit"
+unittest="pre-push"
 
 ; Notify the coverage process
-; unittest_notify_coverage=yes
+unittest_notify_coverage=yes
 
 ; If coverage is lower than. exit with code 1
 ; unittest_accept_min_coverage=70
