@@ -18,6 +18,3 @@ if [ "$PHP_UNITTEST" == "$HOOK" ]; then
         . "$HOOKS_PATH/addons/php-coverage-notify.sh" &
     fi
 fi
-
-
-exit 1
