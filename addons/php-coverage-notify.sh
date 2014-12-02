@@ -2,7 +2,7 @@
 
 TEMP_FILE=$(tempfile) || exit
 
-echo "Generating coverage report in $TEMP_FILE..."
+echo "Notifying coverage..."
 
 phpunit --coverage-text="$TEMP_FILE" > /dev/null
 
