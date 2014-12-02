@@ -7,6 +7,7 @@ then
     REG=${INI__commits__regexp/\{\{BRANCH\}\}/$BRANCH}
     
     PREPEND_BRANCH_NAME=${INI__commits__prepend_branch_name}
+    PREPEND_BRANCH_DENY=${INI__commits__prepend_branch_deny}
     PREPEND_BRANCH_MATCH=${INI__commits__prepend_branch_match}
     PREPEND_BRANCH_MATCH_SUFFIX=${INI__commits__prepend_branch_match_suffix}
     PREPEND_BRANCH_MATCH_PREFIX=${INI__commits__prepend_branch_match_prefix}
@@ -34,6 +35,15 @@ then
                 fi
 
                 INITIAL_COMMIT=$(cat $1)
+
+
+                if [ -n $PREPEND_BRANCH_DENY ]; then
+                    if [ $INITIAL_COMMIT =~ $PREPEND_BRANCH_DENY ]; then
+                        deny "COMMITS" "prepend_branch_name is activated and prepend_branch_deny matching your commit."
+                        exit 1
+                    fi
+                fi
+
                 COMMIT="$PREPEND$INITIAL_COMMIT"
 
                 PREPEND_BRANCH_MATCH_OCCURENCES=$(grep -o $MATCH_PREPEND_BRANCH_NAME <<< $COMMIT | wc -l)

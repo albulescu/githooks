@@ -12,6 +12,13 @@ prepend_branch_name=yes
 ; {{BRANCH}} - replaced with current branch
 prepend_branch_match="^(MDR-[0-9]{3,10}).*$"
 
+
+; If matches this regexp only if prepend_branch_name is on will exit with code 1
+; This is to avoid adding new id to the commit.
+; For example if you add 'MDR-21 message' on branch MDR-123
+; the branch name will be appended and result will be MDR-123: MDR-21 message
+; prepend_branch_deny="MDR-[0-9]*"
+
 ; This will add bofore the match. If match is MDR-123
 ; the commit message will be prepend_branch_match_prefix + MDR-123
 ; prepend_branch_match_prefix="-"
