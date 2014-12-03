@@ -6,13 +6,22 @@ then
     # take regular expresstion from ini
     REG=${INI__commits__regexp/\{\{BRANCH\}\}/$BRANCH}
     
+    SKIP_MERGE_MESSAGE=${INI__commits__skip_merge_message}
     PREPEND_BRANCH_NAME=${INI__commits__prepend_branch_name}
     PREPEND_BRANCH_DENY=${INI__commits__prepend_branch_deny}
     PREPEND_BRANCH_MATCH=${INI__commits__prepend_branch_match}
     PREPEND_BRANCH_MATCH_SUFFIX=${INI__commits__prepend_branch_match_suffix}
     PREPEND_BRANCH_MATCH_PREFIX=${INI__commits__prepend_branch_match_prefix}
+    INITIAL_COMMIT=$(cat $1)
 
-    if [ "$PREPEND_BRANCH_NAME" == "1" ]; then
+    SKIP_MERGE_COMMIT=0
+
+    # Skip checking if is a merge message
+    if [ -n "$SKIP_MERGE_MESSAGE" ] && [[ $INITIAL_COMMIT =~ $SKIP_MERGE_MESSAGE ]]; then
+        SKIP_MERGE_COMMIT=1
+    fi
+
+    if [ "$PREPEND_BRANCH_NAME" == "1" ] && [ "$SKIP_MERGE_COMMIT" == "0" ]; then
         
         PREPEND="$BRANCH"
 
@@ -33,8 +42,6 @@ then
                 if [ -n $PREPEND_BRANCH_MATCH_PREFIX ]; then
                     PREPEND="$PREPEND_BRANCH_MATCH_PREFIX$PREPEND"
                 fi
-
-                INITIAL_COMMIT=$(cat $1)
 
                 if [ -n "$PREPEND_BRANCH_DENY" ]; then
 
@@ -61,26 +68,30 @@ then
         fi
     fi
 
-    # read commit message
-    COMMIT=$(cat $1)
+    if [ "$SKIP_MERGE_COMMIT" == "0" ]; then
 
-    if [ -n "${REG}" ]; then
-        # match regular expression if present
-        if ! [[ $COMMIT =~  $REG ]]; then
-            deny "COMMITS" "Invalid commit message! Should match $REG"
+        # read commit message
+        COMMIT=$(cat $1)
+
+        if [ -n "${REG}" ]; then
+            # match regular expression if present
+            if ! [[ $COMMIT =~  $REG ]]; then
+                deny "COMMITS" "Invalid commit message! Should match $REG"
+            fi
         fi
-    fi
 
-    # if branch expresion present and regexp has no matches snow notif.
-    if [ -n "${INI__commits__branch}" ] && [ ${#BASH_REMATCH[@]} -eq "1" ]; then
-        notify-send -u critical -t 7000 "Git Hooks" "Option to match branch used but no match from commit regexp"
-        exit 0
-    fi
+        # if branch expresion present and regexp has no matches snow notif.
+        if [ -n "${INI__commits__branch}" ] && [ ${#BASH_REMATCH[@]} -eq "1" ]; then
+            notify-send -u critical -t 7000 "Git Hooks" "Option to match branch used but no match from commit regexp"
+            exit 0
+        fi
 
-    # build branch match to check if commit made on right branch
-    BRANCH_MATCH=${INI__commits__branch/\{\{MATCH\}\}/${BASH_REMATCH[1]}} 
+        # build branch match to check if commit made on right branch
+        BRANCH_MATCH=${INI__commits__branch/\{\{MATCH\}\}/${BASH_REMATCH[1]}} 
 
-    if ! [[ $BRANCH =~  $BRANCH_MATCH ]]; then
-        deny "COMMITS" "Invalid commit message! Not on the right branch '$BRANCH'"
+        if ! [[ $BRANCH =~  $BRANCH_MATCH ]]; then
+            deny "COMMITS" "Invalid commit message! Not on the right branch '$BRANCH'"
+        fi
+
     fi
 fi
