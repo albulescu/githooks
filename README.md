@@ -30,6 +30,9 @@ debug=no
 
 [commits]
 
+; Skip all rules when auto merge message is present
+skip_merge_message="^Merge branch"
+
 ; Prepend branch matched from prepend_branch_match
 prepend_branch_name=yes
 
