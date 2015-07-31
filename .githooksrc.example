@@ -1,3 +1,7 @@
+; GitHooks  1.0.0
+; Author: Albulescu Cosmin <cosmin@albulescu.ro>
+; https://github.com/albulescu/githooks
+
 [general]
 
 ; Show all commands executed by using set -x
